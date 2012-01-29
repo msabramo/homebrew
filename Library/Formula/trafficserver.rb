@@ -9,6 +9,7 @@ class Trafficserver < Formula
 
   def install
     ENV.enable_warnings
+    ENV.append_to_cflags "-Wno-deprecated-declarations"
     system "./configure", "--prefix=#{prefix}", "--with-user=#{ENV['USER']}", "--with-group=admin"
     system "make install"
   end
