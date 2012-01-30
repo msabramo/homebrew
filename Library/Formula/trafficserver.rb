@@ -10,9 +10,11 @@ class Trafficserver < Formula
 
   def install
     ENV.enable_warnings
+	ENV.universal_binary
+    # ENV.append "CPPFLAGS", "-I#{prefix}/Cellar/openssl/0.9.8r/include"
+    # ENV.append "LDFLAGS", "-L#{prefix}/Cellar/openssl/0.9.8r/lib"
     system "./configure", "--prefix=#{prefix}", "--with-user=#{ENV['USER']}", "--with-group=admin",
-           "CPPFLAGS=-I#{prefix}/Cellar/openssl/0.9.8r/include",
-           "LDFLAGS=-L#{prefix}/Cellar/openssl/0.9.8r/lib"
+		   "--with-openssl=/usr/local/Cellar/openssl/0.9.8r"
     system "make install"
   end
 
